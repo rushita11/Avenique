@@ -45,7 +45,7 @@ function Header(props) {
                                             <a className="nav-link" aria-current="page" href="#">Services</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" aria-current="page" href="#"> Kontakt os</a>
+                                            <NavLink className="nav-link" aria-current="page" to={'/contact'}> Kontakt os</NavLink>
                                         </li>
                                         <li className="nav-item">
                                             <NavLink className="nav-link" aria-current="page" to={"/product"}> Product</NavLink>
