@@ -1,24 +1,27 @@
+import { FormControl } from '@mui/material';
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import List from '../Component/List/List';
-const data =[
+const data = [
     {
         id: 101,
         image: "assets/image/hot_shot_mist (1).jpg",
-        name:"ot Shot Heat Protection Mist with Grapeseed Oil Provitamin B5 - 150 ml",
+        name: "ot Shot Heat Protection Mist with Grapeseed Oil Provitamin B5 - 150 ml",
         desc: "Prevents Damage | Upto 230° Celsius Protection",
         price: 780
     },
     {
         id: 102,
         image: "assets/image/repair-remedy-leave-in-cream-for-damaged-hair-150g.jpg",
-        name:"Hair Fall Control Shampoo & Conditioner Combo for Stronger Hair",
+        name: "Hair Fall Control Shampoo & Conditioner Combo for Stronger Hair",
         desc: "Prevents Damage | Upto 230° Celsius Protection",
         price: 269
     },
     {
         id: 103,
         image: "assets/image/finish_spray.jpg",
-        name:"Anti-Dandruff Combo For a Clear & Healthy Scalp (300 ml + 250 g)",
+        name: "Anti-Dandruff Combo For a Clear & Healthy Scalp (300 ml + 250 g)",
         desc: "Prevents Damage | Upto 230° Celsius Protection",
         price: 459
     }
@@ -26,12 +29,66 @@ const data =[
 ]
 
 function Product(props) {
+    const [filterData, setFilterData] = useState();
+      
+    // const [sortData, setSortData] = useState();
+    // const [sort, setSort] = useState();
+    const handlefilter = (val) => {
+        alert("")
+        console.log("hello")
+        if (val !== '') {
+            let fData = data.filter((d) => (
+                d.name.toLowerCase().includes(val.toLowerCase()) ||
+                d.price.toString().includes(val) ||
+                d.quantity.toString().includes(val)
+            ))
+            setFilterData(fData)
+
+        } 
+        else {
+            setFilterData()
+            // sorting(sort, 'yes');
+        }
+    }
+
+    // const sorting = (val, empty = '') => {
+    //     let FData = filterData && empty === '' ? filterData : data;
+    //     setSort(val)
+    //     console.log(val)
+    //     if (val !== 0) {
+    //         let sData = FData.sort((a, b) => {
+    //             if (val === "hl") {
+    //                 return b.price - a.price
+    //             } else if (val === "lh") {
+    //                 return a.price - b.price
+    //             } else if (val === 'az') {
+    //                 return a.name.localeCompare(b.name)
+    //             } else if (val === "za") {
+    //                 return b.name.localeCompare(a.name)
+    //             } else if (val === "qh") {
+    //                 return b.quantity - a.quantity
+    //             } else if (val === "ql") {
+    //                 return a.quantity - b.quantity
+    //             } else if (val === 'eh') {
+    //                 return a.expiry > b.expiry ? 1 : -1
+    //             } else if (val === "el") {
+    //                 return b.expiry > a.expiry ? 1 : -1
+    //             }
+    //         })
+    //         console.log(sData)
+    //         setSortData(sData)
+    //     } else {
+
+    //     }
+    // }
+    let finalData = filterData ? filterData : data; 
+    console.log(finalData)
     return (
         <>
             {/* header_video_section */}
             <div className="header_video_section">
                 <div className="video_overlay" />
-               
+
                 <img src="assets/image/bBB30_NEW_AADesktop.jpg" alt="" class="w-100 header_background_image" ></img>
                 <div className="container">
                     <div className="video_header_text">
@@ -67,133 +124,30 @@ function Product(props) {
                                 vi skabt behandlinger og protokoller, der sætter baren højt for sikkerhed, effektivitet og
                                 ekspertise inden for vores felt. Med flere års erfaring i dette fag, har vi i klinik Avénique
                                 men avancerede teknologi, der kræves sikkert for at levere enestående kliniske
-                                
+
                                 til vores kundekreds.</p>
                         </div>
                         <div className="product_list_div pt-60">
-                            {/* <div className="row">
-                                <div className="col-lg-3 col-md-4 col-sm-6">
-                                    <div className="product_list_inner_div">
-                                        <div className="product_image_div">
-                                            <img src="assets/image/hot_shot_mist (1).jpg" alt />
-                                        </div>
-                                        <div className="product_desc_div">
-                                            <h3 className="product_title">Hot Shot Heat Protection Mist with Grapeseed Oil &amp;
-                                                Provitamin B5 - 150 ml</h3>
-                                            <p className="product_desc">
-                                                Prevents Damage | Upto 230° Celsius Protection
-                                            </p>
-                                            <p className="product_price">780</p>
-                                        </div>
-                                        <div className="product_cart_button">
-                                            <a href>Add To Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-3 col-md-4 col-sm-6">
-                                    <div className="product_list_inner_div">
-                                        <div className="product_image_div">
-                                            <img src="assets/image/repair-remedy-leave-in-cream-for-damaged-hair-150g.jpg" alt />
-                                        </div>
-                                        <div className="product_desc_div">
-                                            <h3 className="product_title">Hair Fall Control Shampoo &amp; Conditioner Combo for Stronger Hair</h3>
-                                            <p className="product_desc">
-                                                Prevents Damage | Upto 230° Celsius Protection
-                                            </p>
-                                            <p className="product_price">269</p>
-                                        </div>
-                                        <div className="product_cart_button">
-                                            <a href>Add To Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-3 col-md-4 col-sm-6">
-                                    <div className="product_list_inner_div">
-                                        <div className="product_image_div">
-                                            <img src="assets/image/hot_shot_hair_shine_spray_hold_spray_for_radiant_shine_firm_hold.jpg" alt />
-                                        </div>
-                                        <div className="product_desc_div">
-                                            <h3 className="product_title">Anti-Dandruff Combo For a Clear &amp; Healthy Scalp (300 ml + 250 g)</h3>
-                                            <p className="product_desc">
-                                                Prevents Damage | Upto 230° Celsius Protection
-                                            </p>
-                                            <p className="product_price">459</p>
-                                        </div>
-                                        <div className="product_cart_button">
-                                            <a href>Add To Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-3 col-md-4 col-sm-6">
-                                    <div className="product_list_inner_div">
-                                        <div className="product_image_div">
-                                            <img src="assets/image/finish_spray.jpg" alt />
-                                        </div>
-                                        <div className="product_desc_div">
-                                            <h3 className="product_title">Anti-Dandruff Combo For a Clear &amp; Healthy Scalp (300 ml + 250 g)</h3>
-                                            <p className="product_desc">
-                                                Prevents Damage | Upto 230° Celsius Protection
-                                            </p>
-                                            <p className="product_price">499</p>
-                                        </div>
-                                        <div className="product_cart_button">
-                                            <a href>Add To Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-3 col-md-4 col-sm-6">
-                                    <div className="product_list_inner_div">
-                                        <div className="product_image_div">
-                                            <img src="assets/image/hot_shot_mist (1).jpg" alt />
-                                        </div>
-                                        <div className="product_desc_div">
-                                            <h3 className="product_title">Hair Fall Control Shampoo &amp; Conditioner Combo for Stronger Hair</h3>
-                                            <p className="product_desc">
-                                                Prevents Damage | Upto 230° Celsius Protection
-                                            </p>
-                                            <p className="product_price">1009</p>
-                                        </div>
-                                        <div className="product_cart_button">
-                                            <a href>Add To Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-3 col-md-4 col-sm-6">
-                                    <div className="product_list_inner_div">
-                                        <div className="product_image_div">
-                                            <img src="assets/image/hot_shot_hair_shine_spray_hold_spray_for_radiant_shine_firm_hold.jpg" alt />
-                                        </div>
-                                        <div className="product_desc_div">
-                                            <h3 className="product_title">HHello Intense Moisture Kit</h3>
-                                            <p className="product_desc">
-                                                Prevents Damage | Upto 230° Celsius Protection
-                                            </p>
-                                            <p className="product_price">999</p>
-                                        </div>
-                                        <div className="product_cart_button">
-                                            <a href>Add To Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-3 col-md-4 col-sm-6">
-                                    <div className="product_list_inner_div">
-                                        <div className="product_image_div">
-                                            <img src="assets/image/1_1_20.jpg" alt />
-                                        </div>
-                                        <div className="product_desc_div">
-                                            <h3 className="product_title">BBLUNT Pro 1800W Ionic Hair Dryer </h3>
-                                            <p className="product_desc">
-                                                Prevents Damage | Upto 230° Celsius Protection
-                                            </p>
-                                            <p className="product_price">499</p>
-                                        </div>
-                                        <div className="product_cart_button">
-                                            <a href>Add To Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
-                            <List listdata={data}/>
+                            <div className="d-flex gap-5 " >
+                                <FormControl fullWidth>
+                                    {/* <InputLabel id="demo-simple-select-label">Sorting</InputLabel> */}
+                                    {/* <select defaultValue={0} onChange={sorting}>
+                                        <option value={1}>High to Low</option>
+                                        <option value={0}>Low to High</option>
+                                        <option value={2}>A to Z</option>
+                                        <option value={3}>Z to A</option>
+                                    </select> */}
+                                </FormControl>
+
+                                <input
+                                    type={"text"}
+                                    name="search"
+                                    placeholder='Seach...'
+                                    onChange={(e) => handlefilter(e.target.value)}
+                                />
+
+                            </div>
+                                    <List listdata={data} />
                         </div>
                     </div>
                 </div>
